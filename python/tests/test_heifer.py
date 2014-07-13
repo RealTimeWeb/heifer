@@ -42,22 +42,3 @@ class TestHeifer(unittest.TestCase):
             # Assert all of the keys are in item
             intersection = set(keys).intersection(json_dict)
             self.assertEqual(12, len(intersection))
-
-
-    def test_throw_exception(self):
-        heifer.connect()
-
-        with self.assertRaises(heifer.HeiferException) as context:
-            heifer.get_heifer_information(["AAPL"])
-
-        self.assertEqual('MSG', context.exception.args[0])
-
-        with self.assertRaises(heifer.HeiferException) as context:
-            heifer.get_heifer_information_(1)
-
-        self.assertEqual('MSG', context.exception.args[0])
-
-        with self.assertRaises(heifer.HeiferException) as context:
-            heifer.get_heifer_information("INVALID_STOCK")
-
-        self.assertEqual('MSG', context.exception.args[0])
